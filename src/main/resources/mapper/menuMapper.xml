@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.menus.mapper.MenuMapper">
+	
+	<select id="getMenuList" resultType="com.board.menus.domain.MenuDTO">
+		SELECT MENU_ID, MENU_NAME, MENU_SEQ
+		FROM MENUS
+		ORDER BY MENU_SEQ ASC
+	</select>
+	
+	<select id="getMenuOne" resultType="com.board.menus.domain.MenuDTO">
+		SELECT MENU_ID, MENU_NAME, MENU_SEQ
+		FROM MENUS
+		WHERE MENU_ID = #{menu_id}
+	</select>
+	
+	<select id="getLastData" resultType="com.board.menus.domain.MenuDTO">
+		SELECT CONCAT('MENU',CONVERT(IFNULL(MAX(SUBSTRING(MENU_ID, 5, 2)), 1), UNSIGNED) + 1) AS MENU_ID ,
+       		   CONVERT(MAX(IFNULL(MENU_SEQ, 0)) + 1, UNSIGNED) AS MENU_SEQ
+		FROM MENUS;
+	</select>
+	
+	<insert id="insertMenu">
+		INSERT INTO MENUS (MENU_ID, MENU_NAME, MENU_SEQ) VALUES (#{menu_id}, #{menu_name}, #{menu_seq})
+	</insert>
+	
+	<insert id="insertMenu2">
+		INSERT INTO MENUS (MENU_ID, MENU_NAME, MENU_SEQ)
+		VALUES
+		(#{menu_id}, #{menu_name}, #{menu_seq})
+	</insert>
+	
+	<update id="updateMenu">
+		UPDATE menus SET
+		MENU_NAME = #{menu_name} ,
+		MENU_SEQ = #{menu_seq}
+		WHERE MENU_ID = #{menu_id}
+	</update>
+	
+	<delete id="deleteMenu">
+		DELETE FROM menus
+		WHERE MENU_ID = #{menu_id}
+	</delete>
+	
+</mapper>

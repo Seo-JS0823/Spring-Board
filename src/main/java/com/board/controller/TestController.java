@@ -10,6 +10,10 @@ public class TestController {
 	@RequestMapping("/")
 	public String home() {
 		return "home";
+		/*
+			src/main/webapp/WEB-INF/views/home.jsp
+			
+		 */
 	}
 	
 	@RequestMapping("/test")

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: orange;
+}
+
+table, th, td {
+	border: 2px solid #C0C0C0;
+	border-collapse: collapse;
+}
+
+table {
+	width: 100%;
+}
+
+th, td {
+	padding: 10px;
+}
+
+th[colspan="5"] {
+	text-align: right;
+}
+
+main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+h2 {
+	margin: 20px;
+}
