@@ -42,24 +42,18 @@
 			<td colspan="8" style="background: silver; height: 25px"></td>
 		</tr>
 		<c:forEach var="item" items="${userList}">
-			<tr>
+			<c:if test="${uid == item.userid && pwd == item.passwd || uid == 'admin'}">
+				<tr>
 					<td>${item.userid} (${item.grade})</td>
 					<td>${item.passwd}</td>
 					<td>${item.username}</td>
 					<td>${item.email}</td>
 					<td>${item.upoint}</td>
-					<td>${item.indate}</td>
-				<c:choose>
-				<c:when test="${uid == item.userid && pwd == item.passwd || uid == 'admin'}">
+					<td>${item.indate}</td>		
 					<td><a href="/users/delete?userid=${item.userid}" class="del">삭제</a></td>
 					<td><a href="/users/updateform?userid=${item.userid}">수정</a></td>
-				</c:when>
-				<c:otherwise>
-					<td></td>
-					<td></td>
-				</c:otherwise>
-				</c:choose>
-			</tr>
+				</tr>
+			</c:if>
 		</c:forEach>
 	</table>
 </main>
