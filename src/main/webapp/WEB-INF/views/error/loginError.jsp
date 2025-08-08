@@ -6,7 +6,7 @@
 <title>Come Back Home</title>
 <link rel="stylesheet" href="/css/common.css"/>
 <style>
-	main {
+	.errorLogin {
 		width: 30%;
 		max-width: 600px;
 		min-width: 600px;
@@ -44,6 +44,9 @@
 		text-align: right;
 		padding-right: 15px;
 	}
+	.login-btn:hover {
+			
+	}
 	.login-btn [type=submit] {
 		width: 100px;
 		height: 30px;
@@ -51,18 +54,27 @@
 		border-style: none;
 		background-color: lightgreen;
 	}
+	a {
+		text-decoration: none;
+		padding: 8px;
+		border-style: none;
+		border-radius: 12px;
+		background-color: red;
+		font-size: 25px;
+		color: black;
+	}
+	a:hover {
+		background-color: black;
+		color: red;
+		font-size: 30px;
+	}
 </style>
 </head>
 <body>
 <header>
-	<h2><a href="/" id="home">ComeBack Home</a></h2>
-	<a href="/menus/list">메뉴목록</a>
-	<a href="/menus/writeform2">메뉴추가</a>
-	<a href="/users/list">유저 목록</a>
-	<a href="/users/addform">회원 가입</a>
 </header>
-<main>
-	<h2>로그인 화면</h2>
+<main class="errorLogin">
+	<h2>로그인 에러 입니다.</h2>	
 	<form action="/users/login" method="post">
 		<div class="login-box">
 			<label>아이디</label>
@@ -75,9 +87,11 @@
 		<div class="login-btn">
 			<input type="submit" value="로그인"/>
 		</div>
+		<a href="/">홈으로 돌아가기</a>
 	</form>
 </main>
 <script>
+	alert('로그인에 실패하였습니다. 다시 입력해주세요.');
 	const formEl = document.querySelector('form');
 	
 	formEl.addEventListener('submit', function(e) {

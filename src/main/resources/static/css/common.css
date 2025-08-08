@@ -6,14 +6,20 @@
 	margin: 0;
 }
 
-a {
+header a {
+	margin: 0px 12px 0px 12px;
+	padding: 5px 10px 5px 10px;
 	text-decoration: none;
 	color: #333;
+	font-size: 25px;
+	font-weight: bolder;
+	background-color: lightpink;
+	border-radius: 12px;
 }
 
-a:hover {
-	text-decoration: underline;
-	color: orange;
+header a:hover {
+	color: red;
+	font-size: 30px;
 }
 
 table, th, td {
@@ -33,11 +39,36 @@ th[colspan="5"] {
 	text-align: right;
 }
 
-main {
+header {
+	display: flex;
 	width: 80%;
 	margin: 0 auto;
+	margin-left: 100px;
+	white-space: nowrap;
+	vertical-align: middle;
+	align-items: center;
+}
+
+main {
+	width: 80%;
+	margin: 100px auto;
 }
 
 h2 {
-	margin: 20px;
+	margin: 20px 20px 20px 0px;
+	margin-left: 0;
+	color: lightpink;
+	font-size: 30px;
+}
+
+hr {
+	height: 5px;
+	width: 35%;
+	min-width: 420px;
+	max-width: 420px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: none;
+	border-radius: 12px;
+	background-color: gray;
 }

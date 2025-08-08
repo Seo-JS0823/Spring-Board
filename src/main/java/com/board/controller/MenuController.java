@@ -1,4 +1,4 @@
-package com.board.menus.controller;
+package com.board.controller;
 
 import java.util.List;
 
@@ -8,36 +8,50 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.board.menus.domain.MenuDTO;
-import com.board.menus.mapper.MenuMapper;
+import com.board.domain.MenuDTO;
+import com.board.mapper.MenuMapper;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/menus")
 public class MenuController {
 	
 	@Autowired
 	private MenuMapper menuMapper;
 	
-	@RequestMapping("/menus/list")
-	public String list(Model model) {
+	@RequestMapping("/list")
+	public String list(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		
-		List<MenuDTO> list = menuMapper.getMenuList();
+		String name = (String) session.getAttribute("userid");
 		
-		model.addAttribute("menuList", list);
+		if(name == null || name.isEmpty()) {
+			
+			return "redirect:/";
+			
+		} else {
 		
-		return "menus/list"; // /WEB-INF/views/menus/list.jsp
+			List<MenuDTO> list = menuMapper.getMenuList();
+			
+			model.addAttribute("menus", list);
+			
+			return "menus/list"; // /WEB-INF/views/menus/list.jsp
+		}
 	}
 	
-	@RequestMapping("/menus/writeform")
+	@RequestMapping("/writeform")
 	public String writeForm() {	
 		return "menus/write";
 	}
 	
-	@RequestMapping("/menus/writeform2")
+	@RequestMapping("/writeform2")
 	public String writeForm2() {
 		return "menus/write2";
 	}
 	
-	@RequestMapping("/menus/write")
+	@RequestMapping("/write")
 	public String write(MenuDTO menuDto, Model model) {
 		// DB insert
 		menuMapper.insertMenu(menuDto);
@@ -49,7 +63,7 @@ public class MenuController {
 		return "redirect:/menus/list";
 	}
 	
-	@RequestMapping("/menus/write2")
+	@RequestMapping("/write2")
 	public String write2(MenuDTO menuDto) {
 		
 		MenuDTO target = menuMapper.getLastData();
@@ -63,7 +77,7 @@ public class MenuController {
 		return "redirect:/menus/list";
 	}
 	
-	@RequestMapping("/menus/updateform")
+	@RequestMapping("/updateform")
 	public String updateForm(MenuDTO menuDto, Model model) {
 		// 수정할 정보 조회
 		MenuDTO target = menuMapper.getMenuOne(menuDto);
@@ -74,7 +88,7 @@ public class MenuController {
 		return "menus/update";
 	}
 	
-	@RequestMapping("/menus/update")
+	@RequestMapping("/update")
 	public String update(MenuDTO menuDto) {
 		
 		menuMapper.updateMenu(menuDto);
@@ -83,7 +97,7 @@ public class MenuController {
 	}
 	
 	// Build Path -> Configure ... -> java compiler -> Enabel... 체크 -> 맨 밑에 Store... 체크
-	@RequestMapping("/menus/delete")
+	@RequestMapping("/delete")
 	public String delete(@RequestParam String menu_id) {
 		
 		menuMapper.deleteMenu(menu_id);

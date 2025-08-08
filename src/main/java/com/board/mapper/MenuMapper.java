@@ -1,10 +1,10 @@
-package com.board.menus.mapper;
+package com.board.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.board.menus.domain.MenuDTO;
+import com.board.domain.MenuDTO;
 
 @Mapper
 public interface MenuMapper {

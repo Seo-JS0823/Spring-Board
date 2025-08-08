@@ -1,4 +1,4 @@
-package com.board.menus.domain;
+package com.board.domain;
 
 public class MenuDTO {
 	private String menu_id;

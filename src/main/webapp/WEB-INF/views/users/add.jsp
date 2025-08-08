@@ -6,6 +6,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/common.css"/>
 <style>
+	.user-info {
+		
+	}
+	
 	td {
 		padding: 10px;
 		width: 700px;
@@ -27,6 +31,10 @@
 	input[type=submit] {
 		width: 200px;
 	}
+	
+	#btnEmail, #btnPasswd {
+		margin-left: 12px;
+	}
 </style>
 </head>
 <body>
@@ -38,35 +46,39 @@
 	<a href="/users/addform">회원 가입</a>
 </header>
 <main>
-	<h2>메뉴 추가</h2>
-	<form action="/menus/write2" method="post">
+	<h2>회원가입</h2>
+	<form action="/users/add" method="post">
 		<table>
 			<tr>
-				<td>메뉴 이름</td>
-				<td><input type="text" name="menu_name"/></td>
+				<td>회원 아이디</td>
+				<td><input type="text" name="userid"/></td>
+			</tr>
+			<tr>
+				<td>회원 비밀번호</td>
+				<td>
+					<input type="password" name="passwd"/>
+					<button type="button" id="btnPasswd">비밀번호 확인</button>
+				</td>
+			</tr>
+			<tr>
+				<td>회원 이름</td>
+				<td><input type="text" name="username" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<td>회원 이메일</td>
+				<td>
+					<input type="text" name="email"/>
+					<button type="button" id="btnEmail">이메일 확인</button>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="등록"/>
+					<input type="submit" value="회원가입"/>
 				</td>
 			</tr>
 		</table>
 	</form>
 </main>
-<script>
-	const formEl = document.querySelector('form');
-	
-	formEl.addEventListener('submit', function(e) {
-		const menu_nameEl = document.querySelector('[name="menu_name"]');
-		
-		if(menu_nameEl.value.trim() == '') {
-			alert('메뉴 이름을 입력하세요.');
-			e.stopPropagation();
-			e.preventDefault();
-
-			return false;
-		}
-	});
-</script>
+<script src="/js/login.js"></script>
 </body>
 </html>
